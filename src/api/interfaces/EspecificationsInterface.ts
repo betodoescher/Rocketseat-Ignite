@@ -8,7 +8,7 @@ interface ICreateEspecificationDTO {
 
 interface EspecificationsInterface {
     findByName(name: String): Especification
-    list(): Especification
+    list(): Especification[]
     create({ name, description }: ICreateEspecificationDTO): void
 }
 

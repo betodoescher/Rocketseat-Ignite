@@ -8,7 +8,7 @@ interface ICreateCategoryDTO {
 
 interface CategoriesInterface {
     findByName(name: String): Category
-    list(): Category
+    list(): Category[]
     create({ name, description }: ICreateCategoryDTO): void
 }
 

@@ -1,14 +1,14 @@
 import { Router } from 'express'
-
-import { CategoriesController } from '../api/controllers/CategoriesController'
-
+import { categoriesController } from '../loaders/categories.loaders'
 
 const categoriesRoutes = Router()
-const categoriesController = new CategoriesController()
-
 
 categoriesRoutes.route('/categories')
-    .get(categoriesController.index)
-    .post(categoriesController.store)
+    .get((request, response) => {
+        return categoriesController.index(request, response)
+    })
+    .post((request, response) => {
+        return categoriesController.store(request, response)
+    })
 
 export { categoriesRoutes }

@@ -3,31 +3,23 @@ import {
     Response
 } from "express";
 
-import { CreateCategoryService } from '../services/CreateCategoryService'
+import { CategoryService } from '../services/CategoryService'
 
 import { CategoriesRepository } from '../repositories/CategoriesRepository'
 
-
 class CategoriesController {
 
-    constructor() {
-
-    }
+    constructor(private categoryService: CategoryService) { }
 
     public async index(request: Request, response: Response): Promise<Response> {
 
-        return response.status(200).json((new CategoriesRepository()).list());
+        return response.status(200).json(this.categoryService.list());
     }
 
     public async store(request: Request, response: Response): Promise<Response> {
         const { name, description } = request.body;
 
-        const categoriesRepository = new CategoriesRepository();
-
-        const categoryService = new CreateCategoryService(categoriesRepository)
-
-        categoryService.execute({ name, description })
-
+        this.categoryService.execute({ name, description })
 
         return response.status(201).send();
     }

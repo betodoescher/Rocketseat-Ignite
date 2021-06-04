@@ -1,5 +1,6 @@
 
 import { CategoriesInterface } from '../interfaces/CategoriesInterface';
+import { Category } from '../models/Category';
 
 
 interface IRequest {
@@ -7,7 +8,7 @@ interface IRequest {
     description: String
 }
 
-class CreateCategoryService {
+class CategoryService {
     constructor(private categoriesRepository: CategoriesInterface) { }
 
     execute({ name, description }: IRequest) {
@@ -19,6 +20,10 @@ class CreateCategoryService {
 
         this.categoriesRepository.create({ name, description })
     }
+
+    list(): Category[] {
+        return this.categoriesRepository.list()
+    }
 }
 
-export { CreateCategoryService }
+export { CategoryService }

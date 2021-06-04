@@ -29,9 +29,7 @@ class EspecificationsRepository {
     }
 
     findByName(name: String): Especification {
-        const especification = this.especifications.find((especification) => especification.name === name)
-
-        return especification
+        return this.especifications.find((especification) => especification.name === name)
     }
 }
 

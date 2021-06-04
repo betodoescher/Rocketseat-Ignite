@@ -1,5 +1,6 @@
 
 import { EspecificationsInterface } from '../interfaces/EspecificationsInterface';
+import { Especification } from '../models/Especification';
 
 
 interface IRequest {
@@ -7,7 +8,7 @@ interface IRequest {
     description: String
 }
 
-class CreateEspecificationService {
+class EspecificationService {
     constructor(private especificationsRepository: EspecificationsInterface) { }
 
     execute({ name, description }: IRequest) {
@@ -19,6 +20,10 @@ class CreateEspecificationService {
 
         this.especificationsRepository.create({ name, description })
     }
+
+    list(): Especification[] {
+        return this.especificationsRepository.list()
+    }
 }
 
-export { CreateEspecificationService }
+export { EspecificationService }
