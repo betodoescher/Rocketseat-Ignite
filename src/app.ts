@@ -1,6 +1,7 @@
 import express from "express"
 import cors from "cors"
 import { categoriesRoutes } from './routes/categories.routes'
+import { especificationsRoutes } from './routes/especifications.routes'
 
 class App {
 
@@ -17,6 +18,7 @@ class App {
         this.express.use(express.json())
         this.express.use(cors())
         this.express.use(categoriesRoutes)
+        this.express.use(especificationsRoutes)
     }
 
     // private routes(): void {

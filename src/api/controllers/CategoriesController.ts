@@ -1,4 +1,7 @@
-import * as express from "express";
+import {
+    Request,
+    Response
+} from "express";
 
 import { CreateCategoryService } from '../services/CreateCategoryService'
 
@@ -11,12 +14,12 @@ class CategoriesController {
 
     }
 
-    public async index(request: express.Request, response: express.Response): Promise<express.Response> {
+    public async index(request: Request, response: Response): Promise<Response> {
 
         return response.status(200).json((new CategoriesRepository()).list());
     }
 
-    public async store(request: express.Request, response: express.Response): Promise<express.Response> {
+    public async store(request: Request, response: Response): Promise<Response> {
         const { name, description } = request.body;
 
         const categoriesRepository = new CategoriesRepository();
