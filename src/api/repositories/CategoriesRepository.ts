@@ -6,7 +6,7 @@ interface ICreateCategoryDTO {
     description: String
 }
 
-export class CategoriesRepository {
+class CategoriesRepository {
     private categories: Category[]
 
     constructor() {
@@ -30,4 +30,12 @@ export class CategoriesRepository {
     list(): Category[] {
         return this.categories
     }
+
+    findByName(name: String): Category {
+        const catecory = this.categories.find((category) => catecory.name === name)
+
+        return catecory
+    }
 }
+
+export { CategoriesRepository }
