@@ -2,7 +2,7 @@ import { EspecificationsRepository } from '../api/repositories/EspecificationsRe
 import { EspecificationService } from '../api/services/EspecificationService'
 import { EspecificationsController } from '../api/controllers/EspecificationsController'
 
-const especificationsRepository = new EspecificationsRepository()
+const especificationsRepository = EspecificationsRepository.getInstance()
 const especificationService = new EspecificationService(especificationsRepository)
 const especificationsController = new EspecificationsController(especificationService)
 

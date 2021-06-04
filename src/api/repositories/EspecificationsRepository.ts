@@ -6,8 +6,21 @@ import { Especification } from '../models/Especification'
 class EspecificationsRepository {
     private especifications: Especification[]
 
-    constructor() {
+    // Singleton Pattern
+    private static INSTANCE: EspecificationsRepository
+
+    private constructor() {
         this.especifications = []
+    }
+
+    public static getInstance(): EspecificationsRepository {
+
+        if (!EspecificationsRepository.INSTANCE) {
+            EspecificationsRepository.INSTANCE = new EspecificationsRepository()
+        }
+
+        return EspecificationsRepository.INSTANCE
+
     }
 
     create({ name, description }: ICreateEspecificationDTO): Especification {
