@@ -5,11 +5,13 @@ import {
 
 import { CategoryService } from '../services/CategoryService'
 
-import { CategoriesRepository } from '../repositories/CategoriesRepository'
+import { ImportCategoryService } from '../services/ImportCategoryService'
+
+
 
 class CategoriesController {
 
-    constructor(private categoryService: CategoryService) { }
+    constructor(private categoryService: CategoryService, private importCategoryService: ImportCategoryService) { }
 
     public async index(request: Request, response: Response): Promise<Response> {
 
@@ -22,6 +24,14 @@ class CategoriesController {
         this.categoryService.execute({ name, description })
 
         return response.status(201).send();
+    }
+
+    public async import(request: Request, response: Response): Promise<Response> {
+        const { file } = request;
+
+        this.importCategoryService.execute(file)
+
+        return response.status(200).send();
     }
 }
 

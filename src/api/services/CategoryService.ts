@@ -1,6 +1,11 @@
 
 import { CategoriesInterface } from '../interfaces/CategoriesInterface';
+
 import { Category } from '../models/Category';
+
+import csvParse from 'csv-parse'
+
+import fs from 'fs'
 
 
 interface IRequest {
@@ -23,6 +28,22 @@ class CategoryService {
 
     list(): Category[] {
         return this.categoriesRepository.list()
+    }
+
+    import(file: Express.Multer.File): void {
+
+        const stream = fs.createReadStream(file.path)
+
+        const parseFile = csvParse()
+
+        stream.pipe(parseFile)
+
+        parseFile.on('data', async (line) => {
+
+            console.log(line)
+
+        })
+
     }
 }
 
