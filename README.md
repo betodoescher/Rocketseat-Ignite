@@ -19,5 +19,12 @@
 ## Access documentation in Swagger
 - `http://localhost:3333/api-docs`
 
+## Create migration
+- `typeorm migration:create -n CreateCategories`
+### Run migrations
+- `typeorm migration:run`
+### Revert migrations
+- `typeorm migration:revert`
+
 ## Run test
 - ` `

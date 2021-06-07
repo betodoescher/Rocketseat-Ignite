@@ -8,3 +8,22 @@ services:
       - 3333:3333
     volumes:
       - .:/usr/app
+    depends_on:
+      - database
+    links:
+      - database
+  database:
+    build:
+      context: "./docker/mysql"
+    container_name: database
+    restart: always
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./docker/mysql/data/mysql:/var/lib/mysql
+      - ./docker/mysql/logs/mysql:/var/log/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=tiger
+      - MYSQL_USER=docker
+      - MYSQL_PASSWORD=ignite
+      - MYSQL_DATABASE=rentx

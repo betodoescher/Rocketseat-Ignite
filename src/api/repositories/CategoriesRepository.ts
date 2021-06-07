@@ -1,49 +1,33 @@
-import { ICreateCategoryDTO } from '../interfaces/CategoriesInterface'
+import { getRepository, Repository } from 'typeorm'
+import { ICreateCategoryDTO, CategoriesInterface } from '../interfaces/CategoriesInterface'
 import { Category } from '../models/Category'
 
 
 
-class CategoriesRepository {
-    private categories: Category[]
+
+class CategoriesRepository implements CategoriesInterface {
+    private repository: Repository<Category>
 
 
-    // Singleton Pattern
-    private static INSTANCE: CategoriesRepository
-
-    private constructor() {
-        this.categories = []
+    constructor() {
+        this.repository = getRepository(Category)
     }
 
-    public static getInstance(): CategoriesRepository {
-
-        if (!CategoriesRepository.INSTANCE) {
-            CategoriesRepository.INSTANCE = new CategoriesRepository()
-        }
-
-        return CategoriesRepository.INSTANCE
-
-    }
-
-    create({ name, description }: ICreateCategoryDTO): Category {
-        const category = new Category()
-
-        Object.assign(category, {
+    async create({ name, description }: ICreateCategoryDTO): Promise<void> {
+        const category = this.repository.create({
             name,
-            description,
-            created_at: new Date()
+            description
         })
 
-        this.categories.push(category)
-
-        return category
+        await this.repository.save(category)
     }
 
-    list(): Category[] {
-        return this.categories
+    async list(): Promise<Category[]> {
+        return await this.repository.find()
     }
 
-    findByName(name: String): Category {
-        return this.categories.find((category) => category.name === name)
+    async findByName(name: String): Promise<Category> {
+        return await this.repository.findOne({ name })
     }
 }
 

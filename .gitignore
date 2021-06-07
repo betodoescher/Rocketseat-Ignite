@@ -1,2 +1,4 @@
 node_modules
 storage/*
+docker/mysql/data/mysql/*
+docker/mysql/logs/mysql/*

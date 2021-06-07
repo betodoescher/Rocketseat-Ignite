@@ -1,0 +1,17 @@
+{
+    "type": "mysql",
+    "host": "database",
+    "port": 3306,
+    "username": "docker",
+    "password": "ignite",
+    "database": "rentx",
+    "entities": [
+        "./src/api/models/*.ts"
+    ],
+    "migrations": [
+        "./src/database/migrations/*.ts"
+    ],
+    "cli": {
+        "migrationsDir": "./src/database/migrations"
+    }
+}

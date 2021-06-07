@@ -3,9 +3,12 @@ import { CategoryService } from '../api/services/CategoryService'
 import { ImportCategoryService } from '../api/services/ImportCategoryService'
 import { CategoriesController } from '../api/controllers/CategoriesController'
 
-const categoriesRepository = CategoriesRepository.getInstance()
-const categoryService = new CategoryService(categoriesRepository)
-const importCategoryService = new ImportCategoryService(categoriesRepository)
-const categoriesController = new CategoriesController(categoryService, importCategoryService)
+export default (): CategoriesController => {
 
-export { categoriesController }
+    const categoriesRepository = new CategoriesRepository()
+    const categoryService = new CategoryService(categoriesRepository)
+    const importCategoryService = new ImportCategoryService(categoriesRepository)
+    const categoriesController = new CategoriesController(categoryService, importCategoryService)
+
+    return categoriesController
+}

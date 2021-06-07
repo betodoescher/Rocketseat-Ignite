@@ -7,9 +7,9 @@ interface ICreateEspecificationDTO {
 }
 
 interface EspecificationsInterface {
-    findByName(name: String): Especification
-    list(): Especification[]
-    create({ name, description }: ICreateEspecificationDTO): void
+    findByName(name: String): Promise<Especification>
+    list(): Promise<Especification[]>
+    create({ name, description }: ICreateEspecificationDTO): Promise<void>
 }
 
 export { ICreateEspecificationDTO, EspecificationsInterface }

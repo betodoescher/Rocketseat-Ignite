@@ -1,48 +1,31 @@
+import { getRepository, Repository } from 'typeorm'
 import { ICreateEspecificationDTO } from '../interfaces/EspecificationsInterface'
 import { Especification } from '../models/Especification'
 
 
 
 class EspecificationsRepository {
-    private especifications: Especification[]
+    private repository: Repository<Especification>
 
-    // Singleton Pattern
-    private static INSTANCE: EspecificationsRepository
-
-    private constructor() {
-        this.especifications = []
+    constructor() {
+        this.repository = getRepository(Especification)
     }
 
-    public static getInstance(): EspecificationsRepository {
-
-        if (!EspecificationsRepository.INSTANCE) {
-            EspecificationsRepository.INSTANCE = new EspecificationsRepository()
-        }
-
-        return EspecificationsRepository.INSTANCE
-
-    }
-
-    create({ name, description }: ICreateEspecificationDTO): Especification {
-        const especification = new Especification()
-
-        Object.assign(especification, {
+    async create({ name, description }: ICreateEspecificationDTO): Promise<void> {
+        const category = this.repository.create({
             name,
-            description,
-            created_at: new Date()
+            description
         })
 
-        this.especifications.push(especification)
-
-        return especification
+        await this.repository.save(category)
     }
 
-    list(): Especification[] {
-        return this.especifications
+    async list(): Promise<Especification[]> {
+        return await this.repository.find()
     }
 
-    findByName(name: String): Especification {
-        return this.especifications.find((especification) => especification.name === name)
+    async findByName(name: String): Promise<Especification> {
+        return await this.repository.findOne({ name })
     }
 }
 
