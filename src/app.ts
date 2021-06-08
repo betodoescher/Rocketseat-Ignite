@@ -8,6 +8,8 @@ import "./database"
 
 import { categoriesRoutes } from './routes/categories.routes'
 import { especificationsRoutes } from './routes/especifications.routes'
+import { usersRoutes } from './routes/users.routes'
+import { authRoutes } from './routes/auth.routes'
 
 class App {
 
@@ -17,7 +19,6 @@ class App {
         this.express = express()
 
         this.middlewares()
-        // this.routes()
     }
 
     private middlewares() {
@@ -27,11 +28,10 @@ class App {
         this.express.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerFile))
         this.express.use(categoriesRoutes)
         this.express.use(especificationsRoutes)
+        this.express.use(usersRoutes)
+        this.express.use(authRoutes)
     }
 
-    // private routes(): void {
-
-    // }
 }
 
 export default new App().express

@@ -21,6 +21,7 @@
 
 ## Create migration
 - `typeorm migration:create -n CreateCategories`
+- `typeorm migration:create -n AlterUserDeleteUsername`
 ### Run migrations
 - `typeorm migration:run`
 ### Revert migrations

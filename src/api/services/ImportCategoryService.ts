@@ -5,8 +5,8 @@ import fs from 'fs'
 
 
 interface IImportCategory {
-    name: String
-    description: String
+    name: string
+    description: string
 }
 
 class ImportCategoryService {

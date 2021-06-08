@@ -4,8 +4,8 @@ import { CategoriesInterface } from '../interfaces/CategoriesInterface';
 import { Category } from '../models/Category';
 
 interface IRequest {
-    name: String
-    description: String
+    name: string
+    description: string
 }
 
 class CategoryService {

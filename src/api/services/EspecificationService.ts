@@ -5,8 +5,8 @@ import { Especification } from '../models/Especification';
 
 
 interface IRequest {
-    name: String
-    description: String
+    name: string
+    description: string
 }
 
 class EspecificationService {

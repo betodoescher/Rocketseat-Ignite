@@ -24,7 +24,7 @@ class EspecificationsRepository {
         return await this.repository.find()
     }
 
-    async findByName(name: String): Promise<Especification> {
+    async findByName(name: string): Promise<Especification> {
         return await this.repository.findOne({ name })
     }
 }

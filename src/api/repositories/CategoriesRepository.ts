@@ -26,7 +26,7 @@ class CategoriesRepository implements CategoriesInterface {
         return await this.repository.find()
     }
 
-    async findByName(name: String): Promise<Category> {
+    async findByName(name: string): Promise<Category> {
         return await this.repository.findOne({ name })
     }
 }

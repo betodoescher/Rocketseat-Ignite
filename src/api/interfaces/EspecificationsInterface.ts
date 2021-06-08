@@ -2,12 +2,12 @@ import { Especification } from "../models/Especification"
 
 // DTO = Data Transfer Object
 interface ICreateEspecificationDTO {
-    name: String,
-    description: String
+    name: string,
+    description: string
 }
 
 interface EspecificationsInterface {
-    findByName(name: String): Promise<Especification>
+    findByName(name: string): Promise<Especification>
     list(): Promise<Especification[]>
     create({ name, description }: ICreateEspecificationDTO): Promise<void>
 }
