@@ -1,4 +1,5 @@
 
+import { AppError } from '../../errors/AppError';
 import { UsersInterface } from '../interfaces/UsersInterface';
 
 import { User } from '../models/User';
@@ -23,7 +24,7 @@ class UserService {
         const userAlreadyExists = await this.usersRepository.findByName(name)
 
         if (userAlreadyExists) {
-            throw new Error("User Already Exists!");
+            throw new AppError("User Already Exists!", 401);
         }
 
         await this.usersRepository.create({

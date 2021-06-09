@@ -1,4 +1,5 @@
 
+import { AppError } from '../../errors/AppError';
 import { CategoriesInterface } from '../interfaces/CategoriesInterface';
 
 import { Category } from '../models/Category';
@@ -15,7 +16,7 @@ class CategoryService {
         const categoryAlreadyExists = await this.categoriesRepository.findByName(name)
 
         if (categoryAlreadyExists) {
-            throw new Error("Category Already Exists!");
+            throw new AppError("Category Already Exists!", 401);
         }
 
         await this.categoriesRepository.create({ name, description })

@@ -1,4 +1,5 @@
 
+import { AppError } from '../../errors/AppError';
 import { EspecificationsInterface } from '../interfaces/EspecificationsInterface';
 
 import { Especification } from '../models/Especification';
@@ -16,7 +17,7 @@ class EspecificationService {
         const especificationAlreadyExists = await this.especificationsRepository.findByName(name)
 
         if (especificationAlreadyExists) {
-            throw new Error("Especification Already Exists!");
+            throw new AppError("Especification Already Exists!", 401);
         }
 
         await this.especificationsRepository.create({ name, description })
